@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e26d5ff506ec446f894a8d725f8c2424
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - robotPrefab: {fileID: 1819312827721928, guid: 12fd5d64de4cd4acda6b6d40df9e9319,
+      type: 2}
+  - robot: {instanceID: 0}
+  - laserPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{203E294F-6A57-B963-05D6-83EB30201135}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RayShooter.cs">
+    <Files>
+      <File FileName="Assets/Scripts/MouseLook.cs" Line="40" Column="65" />
+      <File FileName="Assets/Scripts/FPSInput.cs" Line="28" Column="6" />
+      <File FileName="Assets/Scripts/RayShooter.cs" Line="43" Column="8" />
+      <File FileName="Assets/Scripts/Laser.cs" Line="27" Column="10" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="47" Column="90" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="81" Column="6" />
+      <File FileName="Assets/Scripts/Player.cs" Line="31" Column="2" />
+      <File FileName="Assets/Scripts/Popup.cs" Line="18" Column="6" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
