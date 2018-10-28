@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{203E294F-6A57-B963-05D6-83EB30201135}</ProjectGuid>
+    <ProjectGuid>{5A5860FB-E381-B02E-A5C6-F074B258312E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -70,16 +70,16 @@
     <Compile Include="Assets\Scripts\Popup.cs" />
     <Compile Include="Assets\Scripts\RayShooter.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Maze/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Unaided/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Maze/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Unaided/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Maze/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Unaided/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Maze/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/Sabrina/Documents/fall2018/games/Unaided/Unaided/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
