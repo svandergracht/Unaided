@@ -26,6 +26,18 @@ public class RayShooter : MonoBehaviour
             //laser.transform.rotation = this.transform.rotation;
             //laser.transform.position = this.transform.TransformPoint(Vector3.forward * 1.5f);
 
+            //This is tentative code to detect if a tile is clicked
+            Vector3 origin = new Vector3(camera.pixelWidth / 2,
+                                 camera.pixelHeight / 2,
+                                 0);
+            Ray ray = camera.ScreenPointToRay(origin);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit)) {
+                if (hit.collider.CompareTag("Tile")) {
+                    Debug.Log("You hit a tile!");
+                }
+            }
+
         }
     }
 }
