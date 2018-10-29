@@ -43,7 +43,7 @@ public class BattleShipTile : MonoBehaviour {
         }
     }
 
-    class SuccessState : CubeState
+    class SuccessState : CubeStateC
     {
 
         public SuccessState(BattleShipTile tile) : base(tile)

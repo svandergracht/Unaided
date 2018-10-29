@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleShipTile.cs">
     <Files>
-      <File FileName="Assets/Scripts/BattleShipTile.cs" Line="13" Column="3" />
-      <File FileName="Assets/Scripts/CubeState.cs" Line="24" Column="1" />
-      <File FileName="../Library/Mobile Documents/com~apple~CloudDocs/StatePatternSurvivalShooter2018/Assets/_CompletedAssets/Scripts/AwesomeStateMachine/Enemy.cs" Line="15" Column="4" />
+      <File FileName="Assets/Scripts/CubeState.cs" Line="7" Column="35" />
+      <File FileName="Assets/Scripts/BattleShipTile.cs" Line="44" Column="6" />
+      <File FileName="../Library/Mobile Documents/com~apple~CloudDocs/StatePatternSurvivalShooter2018/Assets/_CompletedAssets/Scripts/AwesomeStateMachine/Enemy.cs" Line="41" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
