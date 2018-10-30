@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BattleShipTile : MonoBehaviour {
 
-    [SerializeField] GameObject tileObj;
     //Mesh renderer that controls the color of the cube
     public MeshRenderer meshRenderer;
 
@@ -25,6 +24,10 @@ public class BattleShipTile : MonoBehaviour {
 		
 	}
 
+    public void SetStateIncoming() {
+        currentState = new IncomingState(this);
+    }
+
     class NeutralState : CubeState {
        
         public NeutralState(BattleShipTile tile) : base(tile) {
@@ -35,7 +38,6 @@ public class BattleShipTile : MonoBehaviour {
 
     class IncomingState : CubeState
     {
-
         public IncomingState(BattleShipTile tile) : base(tile)
         {
             tile.meshRenderer.material.color = Color.red;
@@ -43,7 +45,7 @@ public class BattleShipTile : MonoBehaviour {
         }
     }
 
-    class SuccessState : CubeStateC
+    class SuccessState : CubeState
     {
 
         public SuccessState(BattleShipTile tile) : base(tile)
