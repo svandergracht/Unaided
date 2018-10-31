@@ -98,7 +98,7 @@ public class BattleShipTileController : MonoBehaviour {
         //pick the indexes to return
         int numPicked = 0;
         while (numPicked < numTilesToPick) {
-            int randomNum = Random.Range(0, validChoices.Capacity - 1);
+            int randomNum = Random.Range(0, validChoices.Count - 1);
             pickedTilePositions[numPicked] = validChoices[randomNum];
             validChoices.RemoveAt(randomNum);
             numPicked++;
