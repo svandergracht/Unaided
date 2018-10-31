@@ -10,8 +10,8 @@ public class BattleShipTileController : MonoBehaviour {
     [SerializeField] BattleShipTile tile2;
     [SerializeField] BattleShipTile tile3;
     [SerializeField] BattleShipTile tile4;
-    
-    private BattleShipTile[] tileArray = new BattleShipTile[5];
+
+    private List<BattleShipTile> tileArray = new List<BattleShipTile>();
 
     //boolean indicating wheter the mini-game has started or not
     //private bool gameStarted;
@@ -32,7 +32,7 @@ public class BattleShipTileController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //temporarily calling StartGame from in here. The overarching game controller should call start game with parameters
-        StartGame(2, 7);
+        StartGame(3, 7);
     }
 
     private void Awake()
@@ -49,11 +49,11 @@ public class BattleShipTileController : MonoBehaviour {
         maxTimeForRound = timeForRound;
 
         //need to make this dynamic like the card game program
-        tileArray[0] = tile0;
-        tileArray[1] = tile1;
-        tileArray[2] = tile2;
-        tileArray[3] = tile3;
-        tileArray[4] = tile4;
+        tileArray.Add(tile0);
+        tileArray.Add(tile1);
+        tileArray.Add(tile2);
+        tileArray.Add(tile3);
+        tileArray.Add(tile4);
 
         //gameStarted = true;
         pickedTiles = PickTiles(numAsteroids, tileArray);
@@ -78,24 +78,28 @@ public class BattleShipTileController : MonoBehaviour {
 	}
 
     /// <summary>
-    /// Given an input array of BattleShipTiles, pick a specified number of tiles randomly.
+    /// Given an input list of BattleShipTiles, pick a specified number of tiles randomly.
     /// </summary>
     /// <returns>The picked tile indexes.</returns>
     /// <param name="numTilesToPick">Number tiles, must be less than the input array length.</param>
-    /// <param name="inputArray">Input array.</param>
+    /// <param name="inputList">Input array. It is passed by value so you can use it internally
+    /// to check valid choices</param>
     /// valid choices idea from: https://answers.unity.com/questions/452983/how-to-exclude-int-values-from-randomrange.html
-    private int[] PickTiles(int numTilesToPick, BattleShipTile[] inputArray) {
+    private int[] PickTiles(int numTilesToPick, List<BattleShipTile> inputList) {
         //indexes of picked tiles to return
         int[] pickedTilePositions = new int[numTilesToPick];
 
-        //possible choices
-        List<int> validChoices = new List<int>(new int[inputArray.Length]);
+        //make list of valid indexed of input list
+        List<int> validChoices = new List<int>();
+        for (int i = 0; i < inputList.Count; i++) {
+            validChoices.Add(i);
+        }
 
         //pick the indexes to return
         int numPicked = 0;
         while (numPicked < numTilesToPick) {
-            int randomNum = Random.Range(0, validChoices.Count - 1);
-            pickedTilePositions[numPicked] = randomNum;
+            int randomNum = Random.Range(0, validChoices.Capacity - 1);
+            pickedTilePositions[numPicked] = validChoices[randomNum];
             validChoices.RemoveAt(randomNum);
             numPicked++;
         }
