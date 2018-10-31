@@ -8,8 +8,6 @@ public class GridTableScript : MonoBehaviour {
     private GameObject grid;
     private Vector3 gridPos;
     private float gridSize;
-    private Vector3 startPos;
-    private float offset = .33f;
 
     private List<GameObject> tiles;
 
@@ -19,13 +17,6 @@ public class GridTableScript : MonoBehaviour {
         grid = GameObject.Find("GridTable");
         gridPos = grid.transform.position;
         gridSize = grid.GetComponent<Collider>().bounds.size.x;
-
-        Debug.Log("gridPos: " + gridPos);
-        Debug.Log("gridSize: " + gridSize);
-        float startPosX = gridPos.x - (gridSize / 2);
-        float startPosY = gridPos.y - (gridSize / 2);
-        float startPosZ = gridPos.z - 0.33f;    //HARDCODED BADLY
-        startPos = new Vector3(startPosX, startPosY, startPosZ);
 
         // Configure
         ConfigureGrid(5, 5);
@@ -38,21 +29,26 @@ public class GridTableScript : MonoBehaviour {
 
     //Set up the tiles
     public void ConfigureGrid(int rows, int cols) {
-        //GameObject tile = Instantiate(tilePrefab) as GameObject;
-        Vector3 currentPos = startPos;
+        //Set up initial values
+        //TODO: fix these magic numbers
+        float startPosX = gridPos.x - (gridSize / 2) + .5f;
+        float startPosY = gridPos.y + 0.25f;   
+        float startPosZ = gridPos.z - (gridSize / 2) + .5f;
+        Vector3 startPos = new Vector3(startPosX, startPosY, startPosZ);
+        float offset = 1f;
+
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 GameObject tile = Instantiate(tilePrefab) as GameObject;
-                //tile.transform.SetParent(grid.transform);
-                //Hardcode size
+                tile.transform.SetParent(grid.transform);
 
                 float posX = (offset * i) + startPos.x;
-                float posY = -(offset * j) + startPos.y;
-                tile.transform.position = new Vector3(posX, posY, startPos.z);
+                float posZ = (offset * j) + startPos.z;
+                tile.transform.position = new Vector3(posX, startPos.y, posZ);
 
 
                 //put it in the list
-                //stiles.Add(tile);
+                //tiles.Add(tile);
             }
         }
     }
