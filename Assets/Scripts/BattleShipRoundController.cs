@@ -37,13 +37,13 @@ public class BattleShipRoundController : MonoBehaviour {
     /// </summary>
     /// <param name="numAsteroids">Number asteroids, must be less than the grid size.</param>
     /// <param name="timeForRound">Time for round.</param>
-    public void StartGame(int numAsteroids, int timeForRound, List<BattleShipTile> gameBoard) {
-        tileArray = gameBoard;
+    public void StartGame(int numAsteroids, int timeForRound, List<GameObject> gameBoard) {
+        //tileArray = gameBoard;
 
         maxTimeForRound = timeForRound;
 
         //gameStarted = true;
-        pickedTiles = PickTiles(numAsteroids, tileArray);
+        pickedTiles = PickTiles(numAsteroids, gameBoard);
         roundTimer = 0;
 
         //print out picked tiles
@@ -51,10 +51,17 @@ public class BattleShipRoundController : MonoBehaviour {
             Debug.Log("Picked tiles: " + pickedTiles[i]);
         }
 
+        for (int i = 0; i < tileArray.Count; i++)
+        {
+            Debug.Log("tile array items: " + tileArray[i]);
+        }
+
         //change the states of the picked tiles
         int counter = 0;
         while (counter < pickedTiles.Length) {
-            tileArray[pickedTiles[counter]].SetStateIncoming();
+            BattleShipTile tile = tileArray[pickedTiles[counter]].GetComponent<BattleShipTile>();
+            tile.SetStateIncoming();
+            //tileArray[pickedTiles[counter]].SetStateIncoming();
             counter++;
         }
     }
@@ -72,7 +79,7 @@ public class BattleShipRoundController : MonoBehaviour {
     /// <param name="inputList">Input array. It is passed by value so you can use it internally
     /// to check valid choices</param>
     /// valid choices idea from: https://answers.unity.com/questions/452983/how-to-exclude-int-values-from-randomrange.html
-    private int[] PickTiles(int numTilesToPick, List<BattleShipTile> inputList) {
+    private int[] PickTiles(int numTilesToPick, List<GameObject> inputList) {
         //indexes of picked tiles to return
         int[] pickedTilePositions = new int[numTilesToPick];
 
