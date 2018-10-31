@@ -8,9 +8,24 @@ public class BattleShipTile : MonoBehaviour {
     public MeshRenderer meshRenderer;
 
     private CubeState currentState;
+    //holders for the other states
+    NeutralState neutralState;
+    MissState missState;
+    IncomingState incomingState;
+    SuccessState successState;
 
+    //private Dictionary<CubeState, CubeState> statesMapping = new Dictionary<CubeState, CubeState>();
+    
     // Use this for initialization
     void Start () {
+        //create states instances
+        neutralState = new NeutralState(this);
+        missState = new MissState(this);
+
+        //setup statesMapping
+        //statesMapping.Add(neutralState, missState);
+
+        //statesMapping.Add(incomingState, successState);
 
 	}
 
@@ -28,11 +43,32 @@ public class BattleShipTile : MonoBehaviour {
         currentState = new IncomingState(this);
     }
 
+    public void SetSuccessState()
+    {
+        currentState = new SuccessState(this);
+    }
+
+    public void ChangeStates() {
+        //currentState = statesMapping[currentState];
+        if (currentState is IncomingState) {
+            currentState = successState;
+        }
+
+    }
+
     class NeutralState : CubeState {
        
         public NeutralState(BattleShipTile tile) : base(tile) {
             tile.meshRenderer.material.color = Color.gray;
+        }
+    }
 
+    class MissState : CubeState
+    {
+
+        public MissState(BattleShipTile tile) : base(tile)
+        {
+            tile.meshRenderer.material.color = Color.yellow;
         }
     }
 
@@ -41,7 +77,6 @@ public class BattleShipTile : MonoBehaviour {
         public IncomingState(BattleShipTile tile) : base(tile)
         {
             tile.meshRenderer.material.color = Color.red;
-
         }
     }
 
