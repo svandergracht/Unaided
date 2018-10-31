@@ -29,8 +29,6 @@ public class GridTableScript : MonoBehaviour {
 
     //Set up the tiles
     private void ConfigureGrid(int rows, int cols) {
-
-        Debug.Log("CONFIG");
         //Set up initial values
         //TODO: fix these magic numbers
         float startPosX = gridPos.x - (gridSize / 2) + .5f;
