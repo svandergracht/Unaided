@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{5A5860FB-E381-B02E-A5C6-F074B258312E}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleShipRoundController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Library/Mobile Documents/com~apple~CloudDocs/StatePatternSurvivalShooter2018/Assets/_CompletedAssets/Scripts/AwesomeStateMachine/Enemy.cs">
     <Files>
       <File FileName="../Library/Mobile Documents/com~apple~CloudDocs/StatePatternSurvivalShooter2018/Assets/_CompletedAssets/Scripts/AwesomeStateMachine/Enemy.cs" Line="41" Column="21" />
-      <File FileName="Assets/Scripts/GameController.cs" Line="45" Column="9" />
-      <File FileName="Assets/Scripts/RayShooter.cs" Line="39" Column="41" />
-      <File FileName="Assets/Scripts/GridTableScript.cs" Line="53" Column="36" />
-      <File FileName="Assets/Scripts/BattleShipGameController.cs" Line="5" Column="54" />
-      <File FileName="Assets/Scripts/BattleShipTile.cs" Line="57" Column="6" />
-      <File FileName="Assets/Scripts/BattleShipRoundController.cs" Line="89" Column="32" />
+      <File FileName="Assets/Scripts/RayShooter.cs" Line="39" Column="34" />
+      <File FileName="Assets/Scripts/GridTableScript.cs" Line="64" Column="1" />
+      <File FileName="Assets/Scripts/BattleShipTile.cs" Line="51" Column="17" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="48" Column="89" />
+      <File FileName="Assets/Scripts/BattleShipGameController.cs" Line="39" Column="21" />
+      <File FileName="Assets/Scripts/BattleShipRoundController.cs" Line="56" Column="1" />
+      <File FileName="Assets/Scripts/CubeState.cs" Line="17" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

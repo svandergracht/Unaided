@@ -51,16 +51,17 @@ public class BattleShipRoundController : MonoBehaviour {
             Debug.Log("Picked tiles: " + pickedTiles[i]);
         }
 
-        for (int i = 0; i < tileArray.Count; i++)
+        for (int i = 0; i < pickedTiles.Length; i++)
         {
-            Debug.Log("tile array items: " + tileArray[i]);
+            Debug.Log("chaning state on: " + gameBoard[pickedTiles[i]]);
         }
 
         //change the states of the picked tiles
         int counter = 0;
         while (counter < pickedTiles.Length) {
-            BattleShipTile tile = tileArray[pickedTiles[counter]].GetComponent<BattleShipTile>();
-            tile.SetStateIncoming();
+            //BattleShipTile tile = gameBoard[pickedTiles[counter]].GetComponent<BattleShipTile>();
+            gameBoard[pickedTiles[counter]].GetComponent<BattleShipTile>().SetStateIncoming();
+            //tile.SetStateIncoming();
             //tileArray[pickedTiles[counter]].SetStateIncoming();
             counter++;
         }
