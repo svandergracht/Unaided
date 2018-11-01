@@ -9,7 +9,7 @@ public class GridTableScript : MonoBehaviour {
     private Vector3 gridPos;
     private float gridSize;
 
-    private GameObject[,] tiles;
+    private GameObject[] tiles;
 
 	// Use this for initialization
 	void Start () {
@@ -29,8 +29,6 @@ public class GridTableScript : MonoBehaviour {
 
     //Set up the tiles
     private void ConfigureGrid(int rows, int cols) {
-
-        Debug.Log("CONFIG");
         //Set up initial values
         //TODO: fix these magic numbers
         float startPosX = gridPos.x - (gridSize / 2) + .5f;
@@ -39,8 +37,8 @@ public class GridTableScript : MonoBehaviour {
         Vector3 startPos = new Vector3(startPosX, startPosY, startPosZ);
         float offset = 1f;
 
-        tiles = new GameObject[rows, cols];
-
+        tiles = new GameObject[rows*cols];
+        int counter = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 GameObject tile = Instantiate(tilePrefab) as GameObject;
@@ -52,13 +50,14 @@ public class GridTableScript : MonoBehaviour {
                 tile.transform.position = new Vector3(posX, startPos.y, posZ);
 
                 //put it in the array
-                tiles[i, j] = tile;
+                tiles[counter] = tile;
+                counter++;
             }
         }
     }
 
     //Gets the array of tiles
-    public GameObject[,] GetTileArray() {
+    public GameObject[] GetTileArray() {
         return tiles;
     }
 }

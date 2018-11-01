@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private Button popupButton;
     [SerializeField] private Image damageIndicator;
 
+    //grid table script 
+    [SerializeField] private GridTableScript gridTableScript;
+
+    private BattleShipGameController battleShipGameController;
+
     // Use this for initialization
     void Start () {
         popup.Close();
@@ -37,6 +42,12 @@ public class GameController : MonoBehaviour
         healthGT = healthGO.GetComponent<Text>();
         healthGT.text = "Health: " + health;
         damageIndicator.enabled = false;
+
+        //create the battleship game controller
+        //battleShipGameController = new BattleShipGameController();
+        battleShipGameController = this.gameObject.AddComponent<BattleShipGameController>();
+
+
     }
 
     // Update is called once per frame

@@ -35,6 +35,8 @@ public class RayShooter : MonoBehaviour
             if (Physics.Raycast(ray, out hit)) {
                 if (hit.collider.CompareTag("Tile")) {
                     Debug.Log("You hit a tile!");
+                    BattleShipTile tile = (BattleShipTile)(hit.transform.gameObject.GetComponent(typeof(BattleShipTile)));
+                    //tile.ChangeStates();
                 }
             }
 
