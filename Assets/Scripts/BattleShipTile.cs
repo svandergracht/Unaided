@@ -8,25 +8,9 @@ public class BattleShipTile : MonoBehaviour {
     public MeshRenderer meshRenderer;
 
     private CubeState currentState;
-    //holders for the other states
-    //NeutralState neutralState;
-    //MissState missState;
-    //IncomingState incomingState;
-    //SuccessState successState;
-
-    //private Dictionary<CubeState, CubeState> statesMapping = new Dictionary<CubeState, CubeState>();
     
     // Use this for initialization
     void Start () {
-        //create states instances
-        //neutralState = new NeutralState(this);
-        //missState = new MissState(this);
-
-        //setup statesMapping
-        //statesMapping.Add(neutralState, missState);
-
-        //statesMapping.Add(incomingState, successState);
-
 	}
 
     private void Awake()
@@ -39,6 +23,29 @@ public class BattleShipTile : MonoBehaviour {
 		
 	}
 
+    public void ChangeState() {
+        if (currentState is NeutralState) {
+            ((NeutralState)currentState).ChangeStates();
+        }
+
+        if (currentState is IncomingState) {
+            ((IncomingState)currentState).ChangeStates();
+        }
+    }
+
+
+    //try and change the state using this
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("trigger entered");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("collision entered");
+    }
+    // ^ fix what's above
+
     public void SetStateIncoming() {
         currentState = new IncomingState(this);
     }
@@ -48,12 +55,9 @@ public class BattleShipTile : MonoBehaviour {
         currentState = new SuccessState(this);
     }
 
-    public void ChangeStates() {
-        //currentState = statesMapping[currentState];
-        if (currentState is IncomingState) {
-            //currentState = successState;
-        }
-
+    public void SetNeutralState()
+    {
+        currentState = new NeutralState(this);
     }
 
     class NeutralState : CubeState {
@@ -63,6 +67,10 @@ public class BattleShipTile : MonoBehaviour {
         }
 
         //put change state in the state classes. Instead of using a superclass-wide hashmap.
+        public void ChangeStates()
+        {
+            tile.currentState = new MissState(tile);
+        }
     }
 
     class MissState : CubeState
@@ -82,6 +90,12 @@ public class BattleShipTile : MonoBehaviour {
             //Renderer rend = tile.GetComponent<MeshRenderer>();
             //Debug.Log("Rend = null?? " + rend == null);
             tile.meshRenderer.material.color = Color.red;
+        }
+
+        public void ChangeStates()
+        {
+            tile.currentState = new SuccessState(tile);
+
         }
     }
 

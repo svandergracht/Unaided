@@ -8,11 +8,15 @@ public class BattleShipGameController : MonoBehaviour {
     //Includes the round number, and the number of asteroids per level 
     private Dictionary<int, int> roundDictionary = new Dictionary<int, int>();
 
+    private int timeForRound = 6;
+
     //the battleship game board
     private List<GameObject> gameBoard = new List<GameObject>();
 
     //current instance of BattleShipRoundController
     private BattleShipRoundController battleShipRoundController;
+
+    private bool gameStarted = false;
 
     // Use this for initialization
     void Start () {
@@ -24,9 +28,6 @@ public class BattleShipGameController : MonoBehaviour {
         //setup gameboard
         for (int i = 0; i < gridTilesGO.Length; i++)
         {
-            //Debug.Log("Grid tiles go: " + gridTilesGO[i].name);
-
-            //BattleShipTile tile = (BattleShipTile)gridTilesGO[i].GetComponent(typeof(BattleShipTile));
             gameBoard.Add(gridTilesGO[i]);
         }
 
@@ -36,25 +37,38 @@ public class BattleShipGameController : MonoBehaviour {
         roundDictionary.Add(3, 18);
 
         //load the first round to start things off
-        CreateRound();
+        CreateRound(roundDictionary[currentRound], true, timeForRound, gameBoard);
+        gameStarted = true;
+        Debug.Log("round dict count: " + roundDictionary.Count);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //while (currentRound <= RoundDictionary.Count) {
 
-        //}
+    // Update is called once per frame
+    void Update () {
+        if (gameStarted && currentRound <= roundDictionary.Count) {
+            //the current round has ended and there are more to go. Start the next round
+            if (battleShipRoundController.GetGameInPlay() == false) {
+                Debug.Log("Current round: " + currentRound);
+                CreateRound(roundDictionary[currentRound], true, timeForRound, gameBoard);
+                currentRound = currentRound + 1;
+            }
+        } else {
+            gameStarted = false;
+            Debug.Log("Battleship game over");
+            Destroy(battleShipRoundController);
+            Destroy(this);
+        }
 	}
 
-    private void CreateRound() {
+    private void CreateRound(int numAsteroids, bool displayAllAtOnce, int aTimeForRound, List<GameObject> gameBoard) {
         //battleShipRoundController = new BattleShipRoundController();
         battleShipRoundController = this.gameObject.AddComponent<BattleShipRoundController>();
 
-        battleShipRoundController.StartGame(roundDictionary[currentRound], (4 * currentRound), gameBoard);
+        battleShipRoundController.StartGame(numAsteroids, displayAllAtOnce, aTimeForRound, gameBoard);
+        gameStarted = true;
     }
 
     public void LoadNextRound() {
         currentRound++;
     }
-    
+
 }

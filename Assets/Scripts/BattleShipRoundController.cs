@@ -6,25 +6,22 @@ public class BattleShipRoundController : MonoBehaviour {
 
     private List<BattleShipTile> tileArray = new List<BattleShipTile>();
 
-    //boolean indicating wheter the mini-game has started or not
-    //private bool gameStarted;
+    //boolean indicating wheter the mini-game is in play or not
+    private bool gameInPlay;
 
     //keep track of where you are between 0 and the max time for round
-    private float roundTimer;
+    private float currentTime;
     //how long a round can last
-    private float maxTimeForRound;
     private float timeBetweenRounds;
     private int currentRound = 1;
     private int numRounds = 3;
 
     //array containing indexes of tiles to pick out of tile array
     private int[] pickedTiles;
-
-    //Want to make an algorithm that randomly picks a number of tiles to set to incoming.
-
+    
     // Use this for initialization
     void Start () {
-        //temporarily calling StartGame from in here. The overarching game controller should call start game with parameters
+
     }
 
     private void Awake()
@@ -37,23 +34,28 @@ public class BattleShipRoundController : MonoBehaviour {
     /// </summary>
     /// <param name="numAsteroids">Number asteroids, must be less than the grid size.</param>
     /// <param name="timeForRound">Time for round.</param>
-    public void StartGame(int numAsteroids, int timeForRound, List<GameObject> gameBoard) {
-        //tileArray = gameBoard;
+    public void StartGame(int numAsteroids, bool displayAllAtOnce, int timeForRound, List<GameObject> gameBoard) {
+        //reset the board states
+        for (int i = 0; i < gameBoard.Count; i++) {
+            gameBoard[i].GetComponent<BattleShipTile>().SetNeutralState();
+        }
 
-        maxTimeForRound = timeForRound;
+        //tileArray = gameBoard;
+        Debug.Log("Time for round: " + timeForRound);
+
+        currentTime = timeForRound;
 
         //gameStarted = true;
         pickedTiles = PickTiles(numAsteroids, gameBoard);
-        roundTimer = 0;
 
         //print out picked tiles
         for (int i = 0; i < pickedTiles.Length; i++) {
-            Debug.Log("Picked tiles: " + pickedTiles[i]);
+            //Debug.Log("Picked tiles: " + pickedTiles[i]);
         }
 
         for (int i = 0; i < pickedTiles.Length; i++)
         {
-            Debug.Log("chaning state on: " + gameBoard[pickedTiles[i]]);
+            //Debug.Log("chaning state on: " + gameBoard[pickedTiles[i]]);
         }
 
         //change the states of the picked tiles
@@ -65,12 +67,23 @@ public class BattleShipRoundController : MonoBehaviour {
             //tileArray[pickedTiles[counter]].SetStateIncoming();
             counter++;
         }
+
+        gameInPlay = true;
     }
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        //Debug.Log("game in play: " + gameInPlay);
+        //Debug.Log("time: " + currentTime);
+        if (gameInPlay && currentTime > 0) {
+            currentTime = currentTime - Time.deltaTime;
+            //Debug.Log("Time left: " + currentTime);
+        
+        } else {
+            gameInPlay = false;
+            Debug.Log("Round over");
+        }
+    }
 
     /// <summary>
     /// Given an input list of BattleShipTiles, pick a specified number of tiles randomly.
@@ -100,5 +113,9 @@ public class BattleShipRoundController : MonoBehaviour {
         }
 
         return pickedTilePositions;
+    }
+
+    public bool GetGameInPlay() {
+        return gameInPlay;
     }
 }
