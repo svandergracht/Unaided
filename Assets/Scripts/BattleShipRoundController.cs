@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class BattleShipRoundController : MonoBehaviour {
 
-    private List<BattleShipTile> tileArray = new List<BattleShipTile>();
+    //private List<BattleShipTile> tileArray = new List<BattleShipTile>();
+    //reference to gameBoard
+    private List<GameObject> gameBoard = new List<GameObject>();
 
     //boolean indicating wheter the mini-game is in play or not
     private bool gameInPlay;
 
+    private int asteroidDamage = 5;
+
     //keep track of where you are between 0 and the max time for round
     private float currentTime;
-    //how long a round can last
-    private float timeBetweenRounds;
-    private int currentRound = 1;
-    private int numRounds = 3;
 
     //array containing indexes of tiles to pick out of tile array
     private int[] pickedTiles;
-    
+
+    //reference to BattleShipGameController
+    BattleShipGameController gameController;
+
+    private BattleShipUIController UIController;
+
+
     // Use this for initialization
     void Start () {
 
@@ -34,11 +40,15 @@ public class BattleShipRoundController : MonoBehaviour {
     /// </summary>
     /// <param name="numAsteroids">Number asteroids, must be less than the grid size.</param>
     /// <param name="timeForRound">Time for round.</param>
-    public void StartGame(int numAsteroids, bool displayAllAtOnce, int timeForRound, List<GameObject> gameBoard) {
+    public void StartGame(int numAsteroids, bool displayAllAtOnce, int timeForRound, List<GameObject> aGameBoard, BattleShipGameController aGameController, BattleShipUIController aUIController) {
+        //set controller references
+        gameController = aGameController;
+        UIController = aUIController;
+
+        gameBoard = aGameBoard;
+
         //reset the board states
-        for (int i = 0; i < gameBoard.Count; i++) {
-            gameBoard[i].GetComponent<BattleShipTile>().SetNeutralState();
-        }
+        SetBoardNeutralState(aGameBoard);
 
         //tileArray = gameBoard;
         Debug.Log("Time for round: " + timeForRound);
@@ -46,7 +56,7 @@ public class BattleShipRoundController : MonoBehaviour {
         currentTime = timeForRound;
 
         //gameStarted = true;
-        pickedTiles = PickTiles(numAsteroids, gameBoard);
+        pickedTiles = PickTiles(numAsteroids, aGameBoard);
 
         //print out picked tiles
         for (int i = 0; i < pickedTiles.Length; i++) {
@@ -62,7 +72,7 @@ public class BattleShipRoundController : MonoBehaviour {
         int counter = 0;
         while (counter < pickedTiles.Length) {
             //BattleShipTile tile = gameBoard[pickedTiles[counter]].GetComponent<BattleShipTile>();
-            gameBoard[pickedTiles[counter]].GetComponent<BattleShipTile>().SetStateIncoming();
+            aGameBoard[pickedTiles[counter]].GetComponent<BattleShipTile>().SetStateIncoming();
             //tile.SetStateIncoming();
             //tileArray[pickedTiles[counter]].SetStateIncoming();
             counter++;
@@ -77,11 +87,19 @@ public class BattleShipRoundController : MonoBehaviour {
         //Debug.Log("time: " + currentTime);
         if (gameInPlay && currentTime > 0) {
             currentTime = currentTime - Time.deltaTime;
+            UIController.SetTimerLabel((int)currentTime);
             //Debug.Log("Time left: " + currentTime);
         
         } else {
             gameInPlay = false;
             Debug.Log("Round over");
+        }
+    }
+
+    public void SetBoardNeutralState(List<GameObject> gameBoard) {
+        for (int i = 0; i < gameBoard.Count; i++)
+        {
+            gameBoard[i].GetComponent<BattleShipTile>().SetNeutralState();
         }
     }
 
@@ -117,5 +135,18 @@ public class BattleShipRoundController : MonoBehaviour {
 
     public bool GetGameInPlay() {
         return gameInPlay;
+    }
+
+    public void CalculateDamage(List<GameObject> aGameBoard) {
+        for (int i = 0; i < aGameBoard.Count; i++)
+        {
+            Debug.Log("In calculate damage");
+            BattleShipTile tile = aGameBoard[i].GetComponent<BattleShipTile>();
+            if (tile.IsIncomingState()) {
+                Debug.Log("In calculate damage");
+                gameController.DecreaseShipHealth(asteroidDamage);
+            }
+        }
+
     }
 }

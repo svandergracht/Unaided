@@ -8,10 +8,10 @@ public class GameController : MonoBehaviour
 {
 
     public GameObject robotPrefab;
-    private Text scoreGT;
+    private Text topRightGT;
     private int score;
 
-    private Text healthGT;
+    private Text topLeftUIGT;
     private int health = 200;
     private const int healthHit = 25;
     private bool playerHitBefore = false;
@@ -34,14 +34,14 @@ public class GameController : MonoBehaviour
         popup.Close();
 
         //get reference to score objects
-        GameObject scoreGO = GameObject.Find("Score");
-        scoreGT = scoreGO.GetComponent<Text>();
+        //GameObject scoreGO = GameObject.Find("Score");
+        //scoreGT = scoreGO.GetComponent<Text>();
 
         //get reference to health objects
-        GameObject healthGO = GameObject.Find("Health");
-        healthGT = healthGO.GetComponent<Text>();
-        healthGT.text = "Health: " + health;
-        damageIndicator.enabled = false;
+        //GameObject healthGO = GameObject.Find("Health");
+        //healthGT = healthGO.GetComponent<Text>();
+        //healthGT.text = "Health: " + health;
+        //damageIndicator.enabled = false;
 
         //create the battleship game controller
         //battleShipGameController = new BattleShipGameController();
@@ -68,7 +68,7 @@ public class GameController : MonoBehaviour
 
     public void AdjustScore(int newScore) {
         score += newScore;
-        scoreGT.text = "Score: " + score;
+        //scoreGT.text = "Score: " + score;
 
         if (score == numEnemies)
         {
@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour
     public void AdjustHealth() {
         if (playerHitBefore == false) {
             health = health - healthHit;
-            healthGT.text = "Health: " + health;
+            //healthGT.text = "Health: " + health;
             damageIndicator.enabled = true;
             playerHitBefore = true;
         }

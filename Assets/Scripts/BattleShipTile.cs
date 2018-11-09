@@ -60,6 +60,13 @@ public class BattleShipTile : MonoBehaviour {
         currentState = new NeutralState(this);
     }
 
+    public bool IsIncomingState() {
+        if (currentState is IncomingState) {
+            return true;
+        }
+        return false;
+    }
+
     class NeutralState : CubeState {
        
         public NeutralState(BattleShipTile tile) : base(tile) {

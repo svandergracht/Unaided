@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\BattleShipGameController.cs" />
     <Compile Include="Assets\Scripts\BattleShipRoundController.cs" />
     <Compile Include="Assets\Scripts\BattleShipTile.cs" />
+    <Compile Include="Assets\Scripts\BattleShipUIController.cs" />
     <Compile Include="Assets\Scripts\CubeState.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FPSInput.cs" />
