@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     private GameController controller;
+    private int complianceScore;
 
 
 	// Use this for initialization
@@ -22,5 +23,9 @@ public class Player : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    public void ChangeComplianceScore(int points) {
+        complianceScore += points;
     }
 }
